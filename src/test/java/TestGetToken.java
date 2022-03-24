@@ -15,8 +15,5 @@ public class TestGetToken {
                 .then().log().all().statusCode(200).body("errcode",equalTo(0));
 
 
-
-
-
     }
 }
