@@ -1,19 +1,17 @@
-import io.restassured.RestAssured;
+import com.testhome.weixin.wework.Wework;
+import com.testhome.weixin.wework.WeworkConfig;
 import org.junit.jupiter.api.Test;
-
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.not;
 
 public class TestGetToken {
 
     @Test
     public void testgetToken(){
+        Wework wework = new Wework();
+        String token =wework.getWeworkToken(WeworkConfig.getInstance().secret);
+        assertThat(token,not(equalTo(null)));
 
-        RestAssured.given().log().all()
-                .queryParam("corpid","ww659b2f5fc83da2a2")
-                .queryParam("corpsecret","vOW9aLAGSe1zfGdGojFaSVhIOU_TRp0jQ44-to5OBYE")
-                .when().get("https://qyapi.weixin.qq.com/cgi-bin/gettoken")
-                .then().log().all().statusCode(200).body("errcode",equalTo(0));
-
-/**/
     }
 }
